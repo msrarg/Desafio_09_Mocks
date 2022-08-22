@@ -1,50 +1,13 @@
-# MOCKS
+# Mocks y normalización
 
-Formato: link a un repositorio en Github con el proyecto cargado. 
-Sugerencia: no incluir los node_modules
+1. Correr "npm i" (Instalacion de todos los paquetes del proyecto)
 
->> Consigna 1: 
+2. Generar el .env (tomar de ejemplo el .env.sample)
 
-Sobre el desafío entregable de la clase 8 (sql y node: nuestra primera base de datos), crear una vista en forma de tabla que consuma desde la ruta ‘/api/productos-test’ del servidor una lista con 5 productos generados al azar utilizando Faker.js como generador de información aleatoria de test (en lugar de tomarse desde la base de datos). Elegir apropiadamente los temas para conformar el objeto ‘producto’ (nombre, precio y foto).
+3. Los productos persisten en Base de datos Mysql
 
->> Consigna 2: 
+4. Los mensajes en MongoDB
 
-Ahora, vamos a reformar el formato de los mensajes y la forma de comunicación del chat (centro de mensajes).
+5. Para ver los datos Fake ingresar la siguiente URL en el navegador http://localhost:8080/api/productos-test
 
-El nuevo formato de mensaje será:
-
-{ 
-    author: {
-        id: 'mail del usuario', 
-        nombre: 'nombre del usuario', 
-        apellido: 'apellido del usuario', 
-        edad: 'edad del usuario', 
-        alias: 'alias del usuario',
-        avatar: 'url avatar (foto, logo) del usuario'
-    },
-    text: 'mensaje del usuario'
-}
-
->> Aspectos a incluir en el entregable: 
-
-Modificar la persistencia de los mensajes para que utilicen un contenedor que permita guardar objetos anidados (archivos, mongodb, firebase).
-
-El mensaje se envía del frontend hacia el backend, el cual lo almacenará en la base de datos elegida. Luego cuando el cliente se conecte o envie un mensaje, recibirá un array de mensajes a representar en su vista. 
-
-El array que se devuelve debe estar normalizado con normalizr, conteniendo una entidad de autores. Considerar que el array tiene sus autores con su correspondiente id (mail del usuario), pero necesita incluir para el proceso de normalización un id para todo el array en su conjunto (podemos asignarle nosotros un valor fijo).
-
-Ejemplo: { id: ‘mensajes’, mensajes: [ ] }
-
-El frontend debería poseer el mismo esquema de normalización que el backend, para que este pueda desnormalizar y presentar la información adecuada en la vista.
-
-Considerar que se puede cambiar el nombre del id que usa normalizr, agregando un tercer parametro a la función schema.Entity, por ejemplo:
-
-const schemaAuthor = new schema.Entity('author',{...},{idAttribute: 'email'});
-
-En este schema cambia el nombre del id con que se normaliza el nombre de los autores a 'email'. Más info en la web oficial. 
-
-Presentar en el frontend (a modo de test) el porcentaje de compresión de los mensajes recibidos. Puede ser en el título del centro de mensajes.
-
->> Nota: incluir en el frontend el script de normalizr de la siguiente cdn: https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js
-
-Así podremos utilizar los mismos métodos de normalizr que en el backend. Por ejemplo:  new normalizr.schema. Entity, normalizr.denormalize(...,...,...)
+6. Para ver la tabla con los datos Fake ingresar la siguiente URL en el navegador http://localhost:8080/api/productos-test/view
